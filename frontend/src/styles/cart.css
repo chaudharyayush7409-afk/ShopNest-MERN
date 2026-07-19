@@ -1,6 +1,7 @@
 .cart-container {
   max-width: 1200px;
   margin: 0 auto;
+  color: #fff;
 }
 
 .cart-layout {
@@ -20,6 +21,7 @@
   display: flex;
   align-items: center;
   background: #18181b;
+  color: #fff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -100,6 +102,7 @@
 .cart-summary {
   flex: 1;
   background: #18181b;
+  color: #fff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -126,6 +129,7 @@
 /* Checkout Page Additions */
 .checkout-content {
   background: #18181b;
+  color: #fff;
   padding: 40px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);

@@ -49,7 +49,7 @@ const Cart = () => {
                ))}
             </div>
             <div className='cart-summary'>
-                <h3>Total Amount: ₹{product.price.toFixed(2)}</h3>
+                <h3>Total Amount: ₹{Number(totalPrice).toFixed(2)}</h3>
                 <button onClick={()=>navigate('/checkout')} className='btn-checkout'>Proceed to pay</button>
             </div>
         </div>
