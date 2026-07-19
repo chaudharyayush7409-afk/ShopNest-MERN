@@ -22,7 +22,7 @@ const Register = () => {
             if(res.ok){
                 alert('registration successfull! please check your email for the welcome OTP.');
                 login({...data.user,token:data.token});
-                navigate('/');
+                navigate('/login');
             }
         } catch (error) {
             console.error(error);

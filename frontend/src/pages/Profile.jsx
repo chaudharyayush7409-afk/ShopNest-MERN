@@ -24,8 +24,8 @@ const Profile = () => {
         } else {
           // Token obsolete or 401: clear and bounce
           if (res.status === 401) {
-             logout();
-             navigate('/login');
+            logout();
+            navigate('/login');
           }
           setOrders([]);
         }
