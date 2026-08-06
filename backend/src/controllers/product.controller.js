@@ -1,6 +1,7 @@
 
 const Product = require("../models/product.model")
 const cloudinary = require("../config/cloudinary");
+const streamifier = require("streamifier");
 
 
 const getProducts = async (req,res)=>{
@@ -31,11 +32,22 @@ const createProduct = async (req,res)=>{
    try {
     const { name,description,price,category,stock } = req.body; 
     let imageUrl = '';
-    if(req.file){
-        const result = await cloudinary.uploader.upload(req.file.path);
-        console.log(result);
-        imageUrl = result.secure_url;
+    if (req.file) {
+            const result = await new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+                { folder: "products" },
+                (error, result) => {
+                    if (error) return reject(error);
+                    resolve(result);
+                }
+            );
+
+            streamifier.createReadStream(req.file.buffer).pipe(stream);
+        });
+
+      imageUrl = result.secure_url;
     }
+
     const product = await Product.create({
         name,
         description,

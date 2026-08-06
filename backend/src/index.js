@@ -11,12 +11,12 @@ const analyticsroute = require('./routes/analytics.route')
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(
-    {
-        origin: ['http://localhost:5173','http://localhost:3000',process.env.FRONTEND_URL],
-        credentials:true
-    }
-));
+import cors from "cors";
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+}));
 app.use("/api/auth",router)
 app.use('/api/products',productRoutes)
 app.use('/api/orders', orderRoutes)

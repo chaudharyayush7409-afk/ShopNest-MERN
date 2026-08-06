@@ -5,7 +5,13 @@ const {Protect} = require("../middlewares/auth.middleware")
 const {admin} = require("../middlewares/admin.middleware")
 
 const {getProducts, getProductById, createProduct, updateProduct, deleteProduct} = require("../controllers/product.controller")
-const upload = multer({dest: 'uploads/'});
+const multer = require("multer");
+
+const storage = multer.memoryStorage();
+
+const upload = multer({
+  storage,
+});
 
 const router = express.Router();
 
