@@ -2,6 +2,7 @@ import React,{useState,useContext} from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 import '../styles/auth.css'
+import config from '../config';
 
 const Register = () => {
     const[name, setName] = useState('');
@@ -9,7 +10,7 @@ const Register = () => {
     const[password, setPassword] = useState('');
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
-    import config from '../config';
+   
 
     const handlesubmit = async (e)=>{
         e.preventDefault();
