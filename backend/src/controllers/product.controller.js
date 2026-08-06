@@ -8,9 +8,14 @@ const getProducts = async (req,res)=>{
     try {
         const products = await Product.find({});
         res.json(products)
-    } catch (error) {
-        res.status(500).json({message:'server error'});
+    }catch (error) {
+    console.error("getProducts error:", error);
+        res.status(500).json({
+            message: error.message,
+            stack: process.env.NODE_ENV !== "production" ? error.stack : undefined,
+        });
     }
+
 };  
 
 const getProductById = async(req,res)=>{
