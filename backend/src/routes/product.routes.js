@@ -5,7 +5,7 @@ const {Protect} = require("../middlewares/auth.middleware")
 const {admin} = require("../middlewares/admin.middleware")
 
 const {getProducts, getProductById, createProduct, updateProduct, deleteProduct} = require("../controllers/product.controller")
-const multer = require("multer");
+
 
 const storage = multer.memoryStorage();
 
