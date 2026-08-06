@@ -9,11 +9,12 @@ const Register = () => {
     const[password, setPassword] = useState('');
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
+    import config from '../config';
 
     const handlesubmit = async (e)=>{
         e.preventDefault();
         try {
-            const res = await fetch('/api/auth/register',{
+            const res = await fetch(`${config.API_URL}/auth/register`,{
                 method:'post',
                 headers: {'Content-type':'application/json'},
                 body: JSON.stringify({name,email,password})

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
+import config from '../config'
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const Home = () => {
   useEffect(()=>{
     const fetchProducts = async ()=>{
       try {
-        const res = await fetch('/api/products');
+        const res = await fetch(`${config.API_URL}/products)`);
         const data = await res.json();
         setProducts(data.slice(0,4)); //featured products
       } catch (error) {

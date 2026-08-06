@@ -6,11 +6,12 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  import config from '../config';
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products');
+        const res = await fetch(`${config.API_URL}/products`);
         const data = await res.json();
         setProducts(data);
       } catch (error) {

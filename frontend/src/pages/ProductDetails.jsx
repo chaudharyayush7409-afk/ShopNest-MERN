@@ -3,6 +3,7 @@ import '../styles/product.css'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
+import config from '../config';
 
 const ProductDetails = () => {
 
@@ -14,7 +15,7 @@ const ProductDetails = () => {
     useEffect(()=>{
         const fetchProduct =async ()=>{
             try {
-                const res = await fetch(`/api/products/${id}`);
+                const res = await fetch(`${config.API_URL}/products/${id}`);
                 const data = await res.json();
                 setProduct(data);
 
