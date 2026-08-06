@@ -8,7 +8,7 @@ const AdminOrders = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch('/api/orders', {
+      const res = await fetch(`${config.API_URL}/orders`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       const data = await res.json();

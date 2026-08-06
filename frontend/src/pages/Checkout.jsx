@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import config from '../config';
 import { clearCart } from '../redux/cartSlice';
 
 const Checkout = () => {
@@ -24,7 +25,7 @@ const Checkout = () => {
     }
 
     try {
-      const saveOrderRes = await fetch('/api/orders', {
+      const saveOrderRes = await fetch(`${config.API_URL}/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ const Checkout = () => {
     }
 
     try {
-      const orderRes = await fetch('/api/payment/order', {
+      const orderRes = await fetch(`${config.API_URL}/payment/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalPrice })
@@ -98,7 +99,7 @@ const Checkout = () => {
         order_id: orderData.id,
         handler: async function (response) {
           try {
-            const verifyRes = await fetch('/api/payment/verify', {
+            const verifyRes = await fetch(`${config.API_URL}/payment/verify`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(response)
