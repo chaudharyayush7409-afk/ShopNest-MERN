@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import '../styles/product.css';
+import config from '../config';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  import config from '../config';
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
