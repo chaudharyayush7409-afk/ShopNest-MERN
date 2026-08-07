@@ -13,8 +13,8 @@ async function startServer() {
       console.log(`Server is running on port ${PORT}`);
       console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
     });
-  } catch (err) {
-    console.error("Failed to start server:", err);
+  } catch (error) {
+    console.error("Failed to start server:", error);
     process.exit(1);
   }
 }
