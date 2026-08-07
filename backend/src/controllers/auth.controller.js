@@ -34,14 +34,6 @@ async function registerUser(req,res){
         })
 
         if(user){
-            //generate otp
-            const otp = Math.floor(100000 + Math.random()*900000).toString();
-
-            const message = `welcome to ShopNest, ${name}!
-            your otp for shopNest is: ${otp}`;
-            
-            await sendEmail(email, 'welcome to ShopNest - your otp for registration', message);
-            
             //generate token 
             const token = jwt.sign({
                 id:user._id,
