@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 
 
-await connectDB();
+connectDB();
 
 console.log("Database connection successful");
 
