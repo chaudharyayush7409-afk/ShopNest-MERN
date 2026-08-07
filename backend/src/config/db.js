@@ -5,16 +5,13 @@ async function connectDB() {
   console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
 
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 10000,
-    });
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log("========== ✅ MONGODB CONNECTED ==========");
     console.log("Ready state:", mongoose.connection.readyState);
 
     return true;
   } catch (err) {
-    console.error("========== ❌ MONGODB ERROR ==========");
     console.error(err.message);
     throw err;
   }
