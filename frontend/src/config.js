@@ -1,5 +1,5 @@
 const config = {
-  API_URL: "https://shop-nest-mern-server.vercel.app/api",
+  API_URL: "https://shopnest-mern-7.onrender.com/api",
 };
 
 export default config;
