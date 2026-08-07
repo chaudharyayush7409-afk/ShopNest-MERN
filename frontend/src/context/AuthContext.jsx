@@ -1,4 +1,6 @@
 import React,{createContext,useState} from "react";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../redux/cartSlice";
 
 export const AuthContext = createContext();
 
@@ -11,6 +13,7 @@ export const AuthProvider = ({children})=>{
             return null;
         }
     });
+    const dispatch = useDispatch();
 
     const login =(userData)=>{
         setUser(userData);
@@ -19,7 +22,8 @@ export const AuthProvider = ({children})=>{
 
     const logout = ()=>{
         setUser(null);
-        localStorage.clear();
+        localStorage.removeItem("userinfo");
+        dispatch(clearCart());
     }
     
 
