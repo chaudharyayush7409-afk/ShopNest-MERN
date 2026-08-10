@@ -23,7 +23,6 @@ const Register = () => {
             const data = await res.json();
             if(res.ok){
                 alert('registration successfull! please check your email for the welcome OTP.');
-                login({...data.user,token:data.token});
                 navigate('/login');
             }
         } catch (error) {

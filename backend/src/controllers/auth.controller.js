@@ -8,7 +8,6 @@ async function registerUser(req,res){
     const {name, email, password,role} = req.body
 
     try {
-        console.time("TOTAL REGISTER");
 
         if(!name || !email || !password){
             return res.status(400).json({
@@ -16,31 +15,28 @@ async function registerUser(req,res){
             });
         }
         
-
-        console.time("FIND USER");
         const isuserexist = await userModel.findOne({
             email
         })
-        console.timeEnd("FIND USER");
         
 
         if(isuserexist){
             return res.status(409).json({message: "user already exist"})
         }
          
-        console.time("BCRYPT");
-        const hash = await bcrypt.hash(password,10)
-        console.timeEnd("BCRYPT");
-
-        console.time("CREATE USER");
+        const hash = await bcrypt.hash(password,10);
         const user = await userModel.create({
             name,
             email,
             password:hash,
             role
         })
-        console.timeEnd("CREATE USER");
         if(user){
+            // sendmail
+
+            await sendEmail(email,"register successful", `hello ${name} welcome to shopnest`);
+
+
             //generate token 
             console.time("JWT");
             const token = jwt.sign({
@@ -50,7 +46,6 @@ async function registerUser(req,res){
                 expiresIn:"7d"
                }
             );
-            console.timeEnd("JWT");
 
             res.status(201).json({
                 message:"user registered successfully. please check your email for the otp",
@@ -64,7 +59,6 @@ async function registerUser(req,res){
 
 
         }
-        console.timeEnd("TOTAL REGISTER");
 
 
 
