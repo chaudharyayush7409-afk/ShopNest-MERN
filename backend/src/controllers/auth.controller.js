@@ -34,7 +34,7 @@ async function registerUser(req,res){
         if(user){
             // sendmail
 
-            await sendEmail(email,"register successful", `hello ${name} welcome to shopnest`);
+            sendEmail(email,"register successful", `hello ${name} welcome to shopnest`);
 
 
             //generate token 
