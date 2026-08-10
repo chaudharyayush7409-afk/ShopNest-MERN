@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 
 
 
-const nodemailer = require("nodemailer");
+
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
