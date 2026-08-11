@@ -78,6 +78,8 @@ async function registerUser(req,res){
 }
 
 async function verifyotp(req,res){
+    console.log("VERIFY OTP REQUEST RECEIVED");
+    console.log("Request body:", req.body);
     try {
         const {email,otp} = req.body;
         if(!email) return res.status(400).json({message:"email is required"});
