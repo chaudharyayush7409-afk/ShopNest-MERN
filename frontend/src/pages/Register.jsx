@@ -22,8 +22,12 @@ const Register = () => {
             });
             const data = await res.json();
             if(res.ok){
-                alert('registration successfull! please check your email for the welcome OTP.');
-                navigate('/login');
+              alert('registration successfull! please check your email for the welcome OTP.');
+              navigate('/verify-otp',{
+                state: {
+                  email: email
+                }
+              });
             }
         } catch (error) {
             console.error(error);

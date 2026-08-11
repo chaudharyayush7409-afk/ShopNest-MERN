@@ -2,6 +2,7 @@ const userModel = require("../models/user.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const sendEmail = require("../utils/sendEmail")
+const otpGenerator = require("otp-generator");
 
 
 async function registerUser(req,res){
@@ -23,18 +24,24 @@ async function registerUser(req,res){
         if(isuserexist){
             return res.status(409).json({message: "user already exist"})
         }
-         
+        const otp = otpGenerator.generate(6, {
+            upperCaseAlphabets: false,
+            lowerCaseAlphabets: false,
+            specialChars: false
+        });
+        const otpExpiry = new Date(Date.now() + 5*60*1000); 
         const hash = await bcrypt.hash(password,10);
         const user = await userModel.create({
             name,
             email,
             password:hash,
-            role
+            role,
+            otp,
+            otpExpiry
         })
         if(user){
             // sendmail
-
-            sendEmail(email,"register successful", `hello ${name} welcome to shopnest`);
+            sendEmail(email,"register successful", `hello ${name} welcome to shopnest and your otp is ${otp} please verify it, and the otp will expire in 5 minutes`);
 
 
             //generate token 
@@ -66,6 +73,31 @@ async function registerUser(req,res){
         console.log(error);
         res.status(500).json({
             message: "internal server error"
+        })
+    }
+}
+
+async function verifyotp(req,res){
+    try {
+        const {email,otp} = req.body;
+        if(!email) return res.status(400).json({message:"email is required"});
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).json({message:"user not found"});
+        }
+        if(user.otp !== otp || new Date()>new Date(user.otpExpiry)){
+            return res.status(400).json({message:"invalid or expired otp"})
+        }
+
+        Object.assign(user,{otp:null, otpExpiry:null});
+        await user.save();
+        res.status(200).json({message:"otp verified successfully"})
+
+
+    } catch (error) {
+        console.log("error verifying otp:", error);
+        return res.status(500).json({
+            message:"error verifying otp", error: error.message
         })
     }
 }
@@ -130,6 +162,10 @@ async function getUsers(req,res){
     }
 }
 
-module.exports = {registerUser,loginUser,getUsers}
+async function verifyotp(req,res){
+
+}
+
+module.exports = {registerUser,loginUser,getUsers,verifyotp}
 
 
