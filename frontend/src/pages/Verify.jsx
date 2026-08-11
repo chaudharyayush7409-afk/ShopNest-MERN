@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import config from '../config';
-import '../styles/autt.css'
+import '../styles/auth.css'
 
 const Verify = () => {
     const [otp, setOtp] = useState("");
