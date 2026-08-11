@@ -26,7 +26,7 @@ const Verify = () => {
         try {
             const res = await fetch(`${config.API_URL}/auth/verify-otp`,{
                 method:'post',
-                headers:{"content-type":"json/application"},
+                headers:{"Content-type":"application/json"},
                 body:JSON.stringify({email,otp})
             });
             const data = await res.json();
