@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import config from '../config';
+import '../styles/autt.css'
 
 const Verify = () => {
     const [otp, setOtp] = useState("");
@@ -46,13 +47,15 @@ const Verify = () => {
 
 
   return (
-    <div>
-        <h2>Verify OTP</h2> 
-        <p>OTP sent to: {email}</p> 
-        <form onSubmit={handleSubmit}> 
+    <div className='verify-container'>
+        <div className='verify-box'>
+            <h2>Verify OTP</h2> 
+            <p>OTP sent to: {email}</p> 
+            <form onSubmit={handleSubmit}> 
             <input type="text" placeholder="Enter 6 digit OTP" value={otp} onChange={(e) => setOtp(e.target.value)} maxLength="6" required /> 
             <button type="submit"> Verify OTP </button> 
         </form>
+        </div>
     </div>
   )
 }
