@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://shop-nest-mern-react-gilt.vercel.app",
     credentials: true,
   })
 );
