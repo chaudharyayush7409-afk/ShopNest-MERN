@@ -87,9 +87,25 @@ async function verifyotp(req,res){
         if(!user){
             return res.status(400).json({message:"user not found"});
         }
-        const enterotp = String(otp).trim();
-        if(user.otp !== enterotp || new Date()>new Date(user.otpExpiry)){
-            return res.status(400).json({message:"invalid or expired otp"})
+        const enteredOTP = String(otp).trim();
+        const storedOTP = String(user.otp).trim();
+
+        console.log("========== OTP DEBUG ==========");
+        console.log("Entered OTP:", enteredOTP);
+        console.log("Stored OTP:", storedOTP);
+        console.log("OTP Match:", storedOTP === enteredOTP);
+        console.log("OTP Expiry:", user.otpExpiry);
+        console.log("Current Time:", new Date());
+        console.log("Expired:", new Date() > new Date(user.otpExpiry));
+        console.log("================================");
+
+        if (
+            storedOTP !== enteredOTP ||
+            new Date() > new Date(user.otpExpiry)
+        ) {
+            return res.status(400).json({
+                message: "invalid or expired otp"
+            });
         }
 
         Object.assign(user,{otp:null, otpExpiry:null});
