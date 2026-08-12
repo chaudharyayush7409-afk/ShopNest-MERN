@@ -164,9 +164,6 @@ async function getUsers(req,res){
     }
 }
 
-async function verifyotp(req,res){
-
-}
 
 module.exports = {registerUser,loginUser,getUsers,verifyotp}
 
