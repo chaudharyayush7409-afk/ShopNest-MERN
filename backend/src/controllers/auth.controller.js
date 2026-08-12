@@ -87,7 +87,8 @@ async function verifyotp(req,res){
         if(!user){
             return res.status(400).json({message:"user not found"});
         }
-        if(user.otp !== otp || new Date()>new Date(user.otpExpiry)){
+        const enterotp = String(otp).trim();
+        if(user.otp !== enterotp || new Date()>new Date(user.otpExpiry)){
             return res.status(400).json({message:"invalid or expired otp"})
         }
 
