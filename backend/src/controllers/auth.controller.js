@@ -108,7 +108,7 @@ async function verifyotp(req,res){
             });
         }
 
-        Object.assign(user,{otp:null, otpExpiry:null});
+        Object.assign(user,{otp:null, otpExpiry:null, verified:true});
         await user.save();
         res.status(200).json({message:"otp verified successfully"})
 
