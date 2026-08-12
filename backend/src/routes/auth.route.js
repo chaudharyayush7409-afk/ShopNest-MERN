@@ -9,6 +9,6 @@ const {admin} = require("../middlewares/admin.middleware")
 router.post("/register",registerUser);
 router.post("/login",loginUser);
 router.get("/users", Protect , admin ,getUsers);
-router.post("/verify-otp",verifyotp);
+router.post("/verify",verifyotp);
 
 module.exports = router;

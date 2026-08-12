@@ -34,7 +34,7 @@ const Verify = () => {
             console.log("Sending OTP verification request...");
 
             const res = await fetch(
-                `${config.API_URL}/auth/verify-otp`,
+                `${config.API_URL}/auth/verify`,
                 {
                     method: 'post',
                     headers: {
