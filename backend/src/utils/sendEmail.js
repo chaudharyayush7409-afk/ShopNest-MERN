@@ -9,7 +9,7 @@ const sendEmail = async (to, subject, text) => {
         console.time("EMAIL_TIME");
 
         const { data, error } = await resend.emails.send({
-            from: "ShopNest <onboarding@resend.dev>",
+            from: `ShopNest <${process.env.EMAIL}>`,
             to: [to],
             subject: subject,
             text: text
