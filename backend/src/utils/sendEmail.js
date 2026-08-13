@@ -1,41 +1,96 @@
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
-const sendEmail = async (to, subject, text) => {
-    try {
-        console.log("📧 EMAIL: Starting...");
+const sendEmail = async (to, subject, html) => {
+  try {
+    const info = await transporter.sendMail({
+      from: `"ShopNest" <${process.env.EMAIL_USER}>`,
+      to: to,
+      subject: subject,
+      html: html,
+    });
 
-        console.time("EMAIL_TIME");
+    console.log("Email sent successfully:", info.messageId);
 
-        const { data, error } = await resend.emails.send({
-            from: `ShopNest <${process.env.EMAIL_USER}>`,
-            to: [to],
-            subject: subject,
-            text: text
-        });
-
-        if (error) {
-            console.error("❌ EMAIL ERROR:", error);
-            throw new Error(error.message);
-        }
-
-        console.timeEnd("EMAIL_TIME");
-
-        console.log("📧 EMAIL: Sent successfully");
-        console.log("Message ID:", data.id);
-
-        return data;
-
-    } catch (error) {
-        console.timeEnd("EMAIL_TIME");
-        console.error("❌ EMAIL ERROR:", error);
-
-        throw error;
-    }
+    return info;
+  } catch (error) {
+    console.error("Email sending failed:", error);
+    throw error;
+  }
 };
 
 module.exports = sendEmail;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const { Resend } = require("resend");
+
+// const resend = new Resend(process.env.RESEND_API_KEY);
+
+// const sendEmail = async (to, subject, text) => {
+//     try {
+//         console.log("📧 EMAIL: Starting...");
+
+//         console.time("EMAIL_TIME");
+
+//         const { data, error } = await resend.emails.send({
+//             from: `ShopNest <${process.env.EMAIL_USER}>`,
+//             to: [to],
+//             subject: subject,
+//             text: text
+//         });
+
+//         if (error) {
+//             console.error("❌ EMAIL ERROR:", error);
+//             throw new Error(error.message);
+//         }
+
+//         console.timeEnd("EMAIL_TIME");
+
+//         console.log("📧 EMAIL: Sent successfully");
+//         console.log("Message ID:", data.id);
+
+//         return data;
+
+//     } catch (error) {
+//         console.timeEnd("EMAIL_TIME");
+//         console.error("❌ EMAIL ERROR:", error);
+
+//         throw error;
+//     }
+// };
+
+// module.exports = sendEmail;
 
 
 
