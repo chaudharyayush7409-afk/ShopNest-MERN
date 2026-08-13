@@ -40,8 +40,6 @@ async function registerUser(req,res){
             otpExpiry
         })
         if(user){
-            // sendmail
-            sendEmail(email,"register successful", `hello ${name} welcome to shopnest and your otp is ${otp} please verify it, and the otp will expire in 5 minutes`);
 
 
             //generate token 
