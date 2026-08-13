@@ -41,7 +41,7 @@ async function registerUser(req,res){
         })
         if(user){
 
-
+            sendEmail(email,"welocome to shopnest","you are successfully registered in shopnest thank you!");
             //generate token 
             console.time("JWT");
             const token = jwt.sign({
