@@ -23,7 +23,7 @@ const Register = () => {
             const data = await res.json();
             if(res.ok){
               alert('registration successfull! please login now.');
-              navigate('login')
+              navigate('/login')
             }
         } catch (error) {
             console.error(error);
