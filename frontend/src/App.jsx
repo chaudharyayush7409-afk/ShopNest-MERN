@@ -44,7 +44,7 @@ function App() {
       <Route path="/profile" element={<Profile/>} />
       <Route path="/shop" element={<Shop/>}/>
       <Route path="/admin" element={<AdminDashboard/>}/>
-      <Route path='/verify-otp' element = {<Verify/>}/>
+    
     
       <Route path="/admin/add-product" element={<AddProduct />} />
       <Route path="/admin/products" element={<AdminProducts />} />
