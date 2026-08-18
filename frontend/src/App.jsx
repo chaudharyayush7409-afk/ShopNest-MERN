@@ -22,7 +22,6 @@ import AdminProducts from './admin/AdminProducts';
 import EditProduct from './admin/EditProduct';
 import AdminOrders from './admin/AdminOrders';
 import AdminUsers from './admin/AdminUser';
-import Verify from './pages/Verify';
 
 
 function App() {
