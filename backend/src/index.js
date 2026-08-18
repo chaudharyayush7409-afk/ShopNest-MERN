@@ -5,7 +5,6 @@ const path = require("path");
 const router = require("./routes/auth.route");
 const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.route");
-const paymentroute = require("./routes/payment.route");
 const analyticsroute = require("./routes/analytics.route");
 
 const app = express();
@@ -25,7 +24,6 @@ app.use(
 app.use("/api/auth", router);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/payment", paymentroute);
 app.use("/api/analytics", analyticsroute);
 
 app.get("/", (req, res) => {
